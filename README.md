@@ -223,7 +223,7 @@ systemctl start phoebus_olog
 ### Step 3: Setup MySQL
 1. **Create the Archiver Database**
    
-   
+   See details for [RDB Setup](https://github.com/archiver-appliance/epicsarchiverap/wiki/setup_rhel7_rpms#install-dependencies)
    
    ```
    mysql --user=root --password=*****
