@@ -7,7 +7,7 @@ A general guide to deploying EPICS services
 
 #### Core Dependencies
 
-```bash
+```
 sudo apt update && sudo apt upgrade
 sudo apt install openjdk-17-jdk
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -17,7 +17,7 @@ sudo apt install maven
 
 #### Create Services Account
 
-```bash
+```
 adduser epics_services_nasa
 usermod -aG sudo epics_services_nasa
 ```
@@ -30,7 +30,7 @@ usermod -aG sudo epics_services_nasa
 
 #### Download and Extract ElasticSearch 8.2
 
-```bash
+```
 cd /tmp
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.2.3-linux-x86_64.tar.gz
 mkdir -p /opt/epics-tools/services/nasa/elastic/
@@ -46,7 +46,7 @@ tar -xvf /tmp/elasticsearch-8.2.3-linux-x86_64.tar.gz
 
 - Copy `elastic.service` to `/etc/systemd/system/`
 
-```bash
+```
 systemctl enable elastic.service
 systemctl restart elastic.service
 ```
@@ -59,7 +59,7 @@ systemctl restart elastic.service
 
 #### Install MongoDB 7.0
 
-```bash
+```
 sudo apt-get install gnupg curl
 curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/mongodb-server-7.0.gpg
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
@@ -71,7 +71,7 @@ sudo apt-get install -y mongodb-org
 
 #### Start and Enable MongoDB
 
-```bash
+```
 sudo systemctl start mongod
 sudo systemctl status mongod
 sudo systemctl enable mongod
@@ -85,7 +85,7 @@ sudo systemctl enable mongod
 
 #### Download and Extract Kafka
 
-```bash
+```
 cd /tmp
 wget https://downloads.apache.org/kafka/3.6.2/kafka_2.13-3.6.2.tgz
 mkdir -p /opt/epics-tools/services/nasa/kafka
@@ -101,7 +101,7 @@ tar -xvf /tmp/kafka_2.13-3.6.2.tgz
 
 - Copy `zookeeper.service` and `kafka.service` to `/etc/systemd/system/`.
 
-```bash
+```
 systemctl enable zookeeper
 systemctl enable kafka
 systemctl start zookeeper
@@ -112,7 +112,7 @@ systemctl start kafka
 
 ### Phoebus Installation
 
-```bash
+```
 cd /tmp/
 git clone https://github.com/ControlSystemStudio/phoebus.git
 cd phoebus/
@@ -133,7 +133,7 @@ mvn clean install -DskipTests
 
 #### Install Alarm Server
 
-```bash
+```
 mkdir -p /opt/epics-tools/services/nasa/phoebus-alarms
 cp -rf /tmp/phoebus/services/alarm-server/target/service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz /opt/epics-tools/services/nasa/phoebus-alarms/
 cd /opt/epics-tools/services/nasa/phoebus-alarms
@@ -144,14 +144,14 @@ tar -xvf service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz
 
 #### Enable and Start Alarm Services
 
-```bash
+```
 systemctl enable phoebus_alarm
 systemctl start phoebus_alarm
 ```
 
 #### Setup Alarm Logger
 
-```bash
+```
 mkdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger
 cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/
 ```
@@ -166,7 +166,7 @@ cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAP
 
 #### Download and Install
 
-```bash
+```
 cd /tmp/
 git clone https://github.com/Olog/phoebus-olog.git
 cd phoebus-olog/
@@ -177,7 +177,7 @@ cp -rf /tmp/phoebus-olog/target/service-olog-5.0.0-SNAPSHOT.jar /opt/epics-tools
 
 #### Enable and Start Olog Service
 
-```bash
+```
 systemctl enable phoebus_olog
 systemctl start phoebus_olog
 ```
@@ -186,34 +186,121 @@ systemctl start phoebus_olog
 
 ### Archiver Appliance
 
-#### Install MySQL 5.7 and Set Up Database
-
-```bash
-mysql --user=root --password=*****
-CREATE DATABASE archappl;
-CREATE USER archappl IDENTIFIED BY '******';
-GRANT ALL ON archappl.* TO 'archappl'@'%' WITH GRANT OPTION;
-```
-
 #### Install Archiver Appliance
 
-```bash
-cd /tmp/
-git clone https://github.com/slacmshankar/epicsarchiverap.git
-cd epicsarchiverap
-./gradlew
-```
+### Prerequisites
+- **MySQL 5.7** (with legacy encryption)
+- **Gradle** (for building the application)
 
-- Copy binaries and connectors to `/opt/epics-tools/services/nasa/aa/deploy/`.
+### Step 1: Build and Deploy the Archiver Appliance
+1. **Clone the Repository**
+   ```
+   cd /tmp/
+   git clone https://github.com/archiver-appliance/epicsarchiverap.git && cd epicsarchiverap && git checkout 75665cb -b deploy
+   cd /tmp/epicsarchiverap
+   ./gradlew
+   ```
 
-#### Run Installation Scripts
+   or use pre built binaries https://github.com/archiver-appliance/epicsarchiverap/releases/tag/1.1.0
 
-```bash
-cd /opt/epics-tools/services/nasa/aa/deploy/install_scripts
-./single_machine_install.sh
-```
+2. **Prepare Directories**
+   ```
+   mkdir -p /tmp/epicsarchiverap-dep
+   cd /tmp/epicsarchiverap-dep
+   ```
 
-- Setup services using `aa.service` template and fix HTML pages.
+### Step 2: Download Dependencies
+1. **Download Tomcat**
+   ```
+   wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz
+   ```
+
+2. **Download MySQL Connector**
+   ```
+   wget https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.2.0.tar.gz
+   ```
+
+### Step 3: Setup MySQL
+1. **Create the Archiver Database**
+   
+   
+   
+   ```
+   mysql --user=root --password=*****
+   CREATE DATABASE archappl;
+   CREATE USER archappl IDENTIFIED BY '******';
+   GRANT ALL ON archappl.* TO 'archappl'@'%' WITH GRANT OPTION;
+   ```
+
+### Step 4: Install the Archiver Appliance
+1. **Prepare Installation Directory**
+   ```
+   mkdir -p /opt/epics-tools/services/nasa/aa/deploy
+   cp -rf /tmp/epicsarchiverap/build/distributions/archappl_v1.1.0-55-g8fea848.tar.gz /opt/epics-tools/services/nasa/aa/deploy/
+   cd /opt/epics-tools/services/nasa/aa/deploy
+   tar -xvf archappl_v1.1.0-55-g8fea848.tar.gz
+   ```
+
+2. **Setup the MySQL Connector**
+   ```
+   cd /opt/epics-tools/services/nasa/aa/deploy
+   tar -xvf /tmp/epicsarchiverap-dep/mysql-connector-j-8.2.0.tar.gz
+   ```
+
+3. **Create Installation Scripts Directory**
+   ```
+   mkdir -p /opt/epics-tools/services/nasa/aa/deploy/install_scripts
+   ```
+
+4. **Copy Installation Scripts**
+   - Copy `single_machine_install.sh` and fix Python references in `addMysqlConnPool.py` and `deployMultipleTomcats.py`.
+
+5. **(Optional) Create Configuration Directory**
+   ```
+   mkdir -p /opt/epics-tools/services/nasa/aa/deploy/conf
+   ```
+
+### Step 5: Run the Installation
+1. **Set Environment Variables**
+   ```bash
+   cd /opt/epics-tools/services/nasa/aa/deploy/install_scripts
+   export DEPLOY_DIR=/opt/epics-tools/services/nasa/aa/deploy
+   export JAVA_HOMEb=/usr/lib/jvm/java-17-openjdk-amd64
+   export TOMCAT_DISTRIBUTION=/tmp/epicsarchiverap-dep/apache-tomcat-9.0.31.tar.gz
+   export MYSQL_CLIENT_JAR=/opt/epics-tools/services/nasa/aa/deploy/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar
+   export MYSQL_CONNECTION_STRING="--host=localhost --user=archappl --password=***** --database=archappl"
+   # Optional
+   export SITE_SPECIFIC_POLICIES_FILE=/opt/epics-tools/services/nasa/aa/deploy/conf/policies.py
+   ```
+
+2. **Execute the Installation Script**
+   ```bash
+   ./single_machine_install.sh
+   ```
+
+### Step 6: Configure Startup and Services
+1. **Setup Startup Scripts**
+   - Copy `sampleStatup.sh` to `/opt/epics-tools/services/nasa/aa/deploy/nasaStartup.sh`.
+
+2. **Setup Service Files**
+   - Copy `aa.service` to `/etc/systemd/system`.
+
+3. **Modify HTML Management Pages**
+   ```bash
+   cd /opt/epics-tools/services/nasa/aa/deploy/mgmt/webapps/mgmt/ui/
+   find . -type f -name "*.html" -exec sed -i 's/LCLS/NSLS2/gI' {} +
+   find . -type f -name "*.html" -exec sed -i 's/Jingchen Zhou/AST/gI' {} +
+   find . -type f -name "*.html" -exec sed -i 's/Murali Shankar at 650 xxx xxxx or Bob Hall at 650 xxx xxxx/Kunal Shroff at shroffk@bnl.gov/gI' {} +
+   ```
+
+4. **Switch Lab Logo**
+   - Update logos in:
+     - `../mgmt/webapps/mgmt/ui/comm/img/labLogo.png`
+     - `../mgmt/webapps/mgmt/ui/comm/img/labLogo2.png`
+
+--- 
+
+Feel free to modify any specifics or add more steps as needed!
 
 ---
 
@@ -223,7 +310,7 @@ cd /opt/epics-tools/services/nasa/aa/deploy/install_scripts
 
 #### Install ChannelFinder
 
-```bash
+```
 cd /tmp/
 git clone https://github.com/ChannelFinder/ChannelFinderService.git
 cd ChannelFinderService
@@ -234,7 +321,7 @@ cp -rf /tmp/ChannelFinderService/target/ChannelFinder-4.7.3-SNAPSHOT.jar /opt/ep
 
 #### Enable and Start ChannelFinder Service
 
-```bash
+```
 systemctl enable cf
 systemctl start cf
 ```
@@ -243,7 +330,7 @@ systemctl start cf
 
 ### Save/Restore
 
-```bash
+```
 mkdir -p /opt/epics-tools/services/nasa/save_restore
 cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/save_restore/
 ```
@@ -252,7 +339,7 @@ cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4-
 
 #### Enable and Start Save/Restore Service
 
-```bash
+```
 systemctl enable save_restore
 systemctl start save_restore
 ``` 
