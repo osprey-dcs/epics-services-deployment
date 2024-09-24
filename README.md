@@ -268,7 +268,7 @@ systemctl start phoebus_olog
    ```bash
    cd /opt/epics-tools/services/nasa/aa/deploy/install_scripts
    export DEPLOY_DIR=/opt/epics-tools/services/nasa/aa/deploy
-   export JAVA_HOMEb=/usr/lib/jvm/java-17-openjdk-amd64
+   export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
    export TOMCAT_DISTRIBUTION=/tmp/epicsarchiverap-dep/apache-tomcat-9.0.31.tar.gz
    export MYSQL_CLIENT_JAR=/opt/epics-tools/services/nasa/aa/deploy/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar
    export MYSQL_CONNECTION_STRING="--host=localhost --user=archappl --password=***** --database=archappl"
