@@ -198,7 +198,7 @@ systemctl start phoebus_olog
    cd /tmp/
    git clone https://github.com/archiver-appliance/epicsarchiverap.git && cd epicsarchiverap && git checkout 75665cb -b deploy
    cd /tmp/epicsarchiverap
-   ./gradlew
+   ./gradlew -x sphinx
    ```
 
    or use pre built binaries https://github.com/archiver-appliance/epicsarchiverap/releases/tag/1.1.0
@@ -236,9 +236,9 @@ systemctl start phoebus_olog
 1. **Prepare Installation Directory**
    ```
    mkdir -p /opt/epics-tools/services/nasa/aa/deploy
-   cp -rf /tmp/epicsarchiverap/build/distributions/archappl_v1.1.0-55-g8fea848.tar.gz /opt/epics-tools/services/nasa/aa/deploy/
+   cp -rf /tmp/epicsarchiverap/build/distributions/archappl_v1.1.0-97-g75665cb.tar.gz /opt/epics-tools/services/nasa/aa/deploy/
    cd /opt/epics-tools/services/nasa/aa/deploy
-   tar -xvf archappl_v1.1.0-55-g8fea848.tar.gz
+   tar -xvf archappl_v1.1.0-97-g75665cb.tar.gz
    ```
 
 2. **Setup the MySQL Connector**
@@ -297,10 +297,6 @@ systemctl start phoebus_olog
    - Update logos in:
      - `../mgmt/webapps/mgmt/ui/comm/img/labLogo.png`
      - `../mgmt/webapps/mgmt/ui/comm/img/labLogo2.png`
-
---- 
-
-Feel free to modify any specifics or add more steps as needed!
 
 ---
 
