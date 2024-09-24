@@ -252,8 +252,11 @@ systemctl start phoebus_olog
    mkdir -p /opt/epics-tools/services/nasa/aa/deploy/install_scripts
    ```
 
-4. **Copy Installation Scripts**
-   - Copy `single_machine_install.sh` and fix Python references in `addMysqlConnPool.py` and `deployMultipleTomcats.py`.
+4. **Copy Installation Scripts**   
+   Copy the following templated install scripts to `install_scripts`   
+   - Copy [single_machine_install.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/single_machine_install.sh)
+   - Copy [addMysqlConnPool.py](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/addMysqlConnPool.py)
+   - Copy [deployMultipleTomcats.py](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/deployMultipleTomcats.py)
 
 5. **(Optional) Create Configuration Directory**
    ```
