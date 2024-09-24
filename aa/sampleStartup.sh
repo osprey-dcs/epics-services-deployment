@@ -13,7 +13,7 @@ export EPICS_CA_ADDR_LIST=192.168.83.255
 export EPICS_CA_MAX_ARRAY_BYTES=1100000
 ###
 
-export JAVA_HOME="/usr/li/jvm/java-17-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
 export PATH=${JAVA_HOME}/bin:${PATH}
 
 # We use a lot of memory; so be generous with the heap.
