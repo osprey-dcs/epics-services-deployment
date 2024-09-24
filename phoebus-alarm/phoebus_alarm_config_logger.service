@@ -1,0 +1,49 @@
+# File /etc/systemd/system/phoebus_alarm_config_logger.service
+#
+# After changes
+#   sudo systemctl daemon-reload
+#
+# Start/status/stop
+#   sudo systemctl start phoebus_alarm_config_logger.service
+#   sudo systemctl status phoebus_alarm_config_logger.service
+#   sudo systemctl stop phoebus_alarm_config_logger.service
+#
+# Start when computer boots:
+#   sudo systemctl enable phoebus_alarm_config_logger.service
+#
+
+[Unit]
+Description=alarm service
+Documentation=https://github.com/shroffk/phoebus/tree/master/services/alarm-logger
+Wants=network-online.target
+After=kafka.service phoebus_alarm.service
+Requires=kafka.service phoebus_alarm.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+Environment=PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:/usr/bin:/usr/local/bin
+Environment=SERVER=/opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger
+Environment=PORT=9997
+
+Environment=KAFKA_SERVER=localhost:9092
+Environment=CONFIG=nasa_epics_alarm
+Environment=REPO_LOCATION=/opt/epics-tools/services/nasa/phoebus-alarms
+
+Environment=SETTINGS=/opt/epics-tools/services/nasa/phoebus_alarm/phoebus_alarm_preferences.ini
+
+ExecStart=/usr/bin/procServ --foreground --noautorestart --name alarm-config-logger --chdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger/ --logfile /opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger/console.log --pidfile /opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger/phoebus-alarm-config-logger.pid 9997 ./run-phoebus-alarm-config-logger.sh -bootstrap.servers localhost:9092 -topics nasa_epics_alarm -repo.location /opt/epics-tools/services/nasa/phoebus-alarms
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

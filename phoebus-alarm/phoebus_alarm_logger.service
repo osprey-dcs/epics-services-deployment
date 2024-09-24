@@ -1,0 +1,50 @@
+# File /etc/systemd/system/nasa_phoebus_alarm_logger.service
+#
+# After changes
+#   sudo systemctl daemon-reload
+#
+# Start/status/stop
+#   sudo systemctl start nasa_phoebus_alarm_logger.service
+#   sudo systemctl status nasa_phoebus_alarm_logger.service
+#   sudo systemctl stop nasa_phoebus_alarm_logger.service
+#
+# Start when computer boots:
+#   sudo systemctl enable nasa_phoebus_alarm_logger.service
+#
+
+[Unit]
+Description=alarm service
+Documentation=https://github.com/shroffk/phoebus/tree/master/services/alarm-logger
+Wants=network-online.target
+After=kafka.service phoebus_alarm.service
+Requires=kafka.service phoebus_alarm.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+Environment=PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:/usr/bin:/usr/local/bin
+Environment=SERVER=/opt/epics-tools/services/nasa/phoebus_alarms/alarm_logger
+Environment=PORT=9998
+
+Environment=KAFKA_SERVER=localhost:9092
+Environment=ES_HOST=localhost
+Environment=ES_PORT=9200
+Environment=CONFIG=nasa_epics_alarm
+
+#ExecStart=/usr/bin/procServ --foreground --noautorestart --name alarm-logger --chdir ${SERVER} --logfile ${SERVER}/console.log --pidfile ${SERVER}/phoebus-alarm-logger.pid ${PORT} ./run-phoebus-alarm-logger.sh -bootstrap.servers ${KAFKA_SERVER} -topics ${CONFIG} -es_host ${ES_HOST} -es_port ${ES_PORT}
+ExecStart=/usr/bin/procServ --foreground --noautorestart --name alarm-logger --chdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/ --logfile /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/console.log --pidfile /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/phoebus-alarm-logger.pid 9998 ./run-phoebus-alarm-logger.sh -bootstrap.servers localhost:9092 -topics nasa_epics_alarm -es_host localhost -es_port 9200
+
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

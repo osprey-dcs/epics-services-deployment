@@ -1,0 +1,48 @@
+[Unit]
+Description=Elasticsearch
+Documentation=http://www.elastic.co
+Wants=network-online.target
+After=network-online.target
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Environment=ES_HOME=/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3
+Environment=ES_JAVA_OPTS="-Xms4g -Xmx4g"
+Environment=CONF_DIR=/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3/config
+Environment=CONF_FILE=/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3/config/elasticsearch.yml
+Environment=PID_DIR=/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3
+EnvironmentFile=-/etc/default/elasticsearch
+
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/opt/epics-tools/lib/jvm/jdk-17
+ExecStart=/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3/bin/elasticsearch
+
+# Connects standard output to /dev/null
+#StandardOutput=null
+
+# Connects standard error to journal
+StandardError=journal
+
+# When a JVM receives a SIGTERM signal it exits with code 143
+SuccessExitStatus=143
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Specifies the maximum number of bytes of memory that may be locked into RAM
+# Set to "infinity" if you use the 'bootstrap.mlockall: true' option
+# in elasticsearch.yml and 'MAX_LOCKED_MEMORY=unlimited' in /etc/default/elasticsearch
+#LimitMEMLOCK=infinity
+
+# Shutdown delay in seconds, before process is tried to be killed with KILL (if configured)
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target

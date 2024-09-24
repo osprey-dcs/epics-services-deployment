@@ -1,0 +1,44 @@
+# File /etc/systemd/system/nasa_phoebus_olog.service
+#
+# After changes
+#   sudo systemctl daemon-reload
+#
+# Start/status/stop
+#   sudo systemctl start nasa_phoebus_olog.service
+#   sudo systemctl status nasa_phoebus_olog.service
+#   sudo systemctl stop nasa_phoebus_olog.service
+#
+# Start when computer boots:
+#   sudo systemctl enable nasa_phoebus_olog.service
+#
+
+[Unit]
+Description=phoebus olog service
+Documentation=https://olog.readthedocs.io/en/latest/
+Wants=network-online.target
+After=nasa_elastic.service nasa_mongod.service
+Requires=nasa_elastic.service nasa_mongod.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/opt/css/lib/jvm/jdk-17
+Environment=PATH=/opt/css/lib/jvm/jdk-17/bin:/usr/bin:/usr/local/bin
+Environment=SERVER=/opt/epics-tools/services/nasa/olog/phoebus-olog
+Environment=PORT=4009
+
+#ExecStart=/usr/bin/procServ --foreground --noautorestart --name phoebus_olog --chdir ${SERVER} --pidfile ${SERVER}/olog.pid --logfile ${SERVER}/console.log ${PORT} ./run-phoebus-olog.sh
+ExecStart=/usr/bin/procServ --foreground --noautorestart --name phoebus_olog --chdir /opt/epics-tools/services/nasa/olog/ --pidfile /opt/epics-tools/services/nasa/olog/olog.pid --logfile /opt/epics-tools/services/nasa/olog/console.log 4009 ./run-phoebus-olog.sh
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

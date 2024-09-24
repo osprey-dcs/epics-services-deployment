@@ -1,0 +1,43 @@
+# File /etc/systemd/system/save_restore.service
+#
+# After changes
+#   sudo systemctl daemon-reload
+#
+# Start/status/stop
+#   sudo systemctl start save_restore.service
+#   sudo systemctl status save_restore.service
+#   sudo systemctl stop save_restore.service
+#
+# Start when computer boots:
+#   sudo systemctl enable save_restore.service
+#
+
+[Unit]
+Description=save restore service
+Documentation=https://github.com/ControlSystemStudio/phoebus/tree/master/services/save-and-restore
+Wants=network-online.target
+After=elastic.service
+Requires=elastic.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+Environment=PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:/usr/bin:/usr/local/bin
+Environment=SERVER=/opt/epics-tools/services/nasa/save_restore
+Environment=PORT=8888
+
+ExecStart=/usr/bin/procServ --foreground --noautorestart --name save-restore --chdir /opt/epics-tools/services/nasa/save_restore --pidfile /opt/epics-tools/services/nasa/save_restore/save-restore.pid --logfile /opt/epics-tools/services/nasa/save_restore/console.log 8888 ./run-save-restore.sh
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

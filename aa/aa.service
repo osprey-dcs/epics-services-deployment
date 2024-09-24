@@ -1,0 +1,24 @@
+[Unit]
+Description=Nasa Archiver Appliance Server
+After=syslog.target network.target
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Type=forking
+
+#User=epics_services_nasa
+#Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+
+ExecStart=/opt/epics-tools/services/nasa/aa/deploy/nasaStartup.sh start
+ExecStop=/opt/epics-tools/services/nasa/aa/deploy/nasaStartup.sh stop
+TimeoutSec=180
+
+[Install]
+WantedBy=multi-user.target

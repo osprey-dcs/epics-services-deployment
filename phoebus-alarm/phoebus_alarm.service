@@ -1,0 +1,46 @@
+# File /etc/systemd/system/nasaphoebus_server.service
+#
+# After changes
+#   sudo systemctl daemon-reload
+#
+# Start/status/stop
+#   sudo systemctl start nasa_phoebus_server.service
+#   sudo systemctl status nasa_phoebus_server.service
+#   sudo systemctl stop nasa_phoebus_server.service
+#
+# Start when computer boots:
+#   sudo systemctl enable nasa_phoebus_server.service
+#
+
+[Unit]
+Description=alarm service
+Documentation=https://github.com/shroffk/phoebus/tree/master/services/alarm-server
+Wants=network-online.target
+After=nasa_kafka.service
+Requires=nasa_kafka.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+Environment=PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:/usr/bin:/usr/local/bin
+Environment=SERVER=/opt/epics-tools/services/nasa/phoebus_alarm/alarm_server
+Environment=PORT=9999
+
+Environment=SETTINGS=/opt/epics-tools/services/nasa/phoebus_alarm/phoebus_alarm_preferences.ini
+
+#ExecStart=/usr/bin/procServ --foreground --noautorestart --name alarm-server --chdir ${SERVER} --logfile ${SERVER}/console.log --pidfile ${SERVER}/phoebus-alarm.pid ${PORT} ./run-phoebus-alarm.sh -settings ${SETTINGS}
+ExecStart=/usr/bin/procServ --foreground --noautorestart --name alarm-server --chdir /opt/epics-tools/services/nasa/phoebus-alarms --logfile /opt/epics-tools/services/nasa/phoebus-alarms/console.log --pidfile /opt/epics-tools/services/nasa/phoebus-alarms/phoebus-alarm.pid 9999 ./run-phoebus-alarm.sh -settings /opt/epics-tools/services/nasa/phoebus-alarms/phoebus_alarm_preferences.ini
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

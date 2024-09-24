@@ -1,0 +1,40 @@
+# /etc/systemd/system/nasa-zookeeper.service
+#
+# Start/status/stop
+#   sudo systemctl start nasa-zookeeper.service
+#   sudo systemctl status nasa-zookeeper.service
+#   sudo systemctl stop nasa-zookeeper.service
+#
+# Start when computer boots:
+#   sudo systemctl enable nasa-zookeeper.service
+#
+# When running, it should listen on localhost:2181
+#   netstat -an | fgrep 2181
+# 
+
+[Unit]
+Description=nasa Apache Zookeeper server (Kafka)
+Documentation=http://zookeeper.apache.org
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+Environment=JAVA_HOME=/opt/epics-tools/services/nasa/jdk/jdk-11.0.9
+Environment=PATH=/opt/epics-tools/services/nasa/jdk/jdk-11.0.9/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+ExecStart=/opt/epics-tools/services/nasa/kafka/kafka_2.11-2.1.0/bin/zookeeper-server-start.sh /opt/epics-tools/services/nasa/kafka/kafka_2.11-2.1.0/config/zookeeper.properties
+ExecStop=/opt/epics-tools/services/nasa/kafka/kafka_2.11-2.1.0/bin/zookeeper-server-stop.sh
+
+[Install]
+WantedBy=multi-user.target
+
