@@ -223,7 +223,7 @@ systemctl start phoebus_olog
 ### Step 3: Setup MySQL
 1. **Create the Archiver Database**
    
-   See details for [RDB Setup](https://github.com/archiver-appliance/epicsarchiverap/wiki/setup_rhel7_rpms#install-dependencies)
+   See details for [RDB Setup](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04)
    
    ```
    mysql --user=root --password=*****
