@@ -179,6 +179,15 @@ systemctl enable phoebus_alarm_logger
 systemctl start phoebus_alarm_logger
 ```
 
+#### Verification
+
+Start the Phoebus GUI:
+run-phoebus
+In the GUI menus, navigate to: 
+    Applications -> Alarm -> Alarm Tree
+and then repeat to 
+    Applications -> Alarm -> Alarm Log Table
+
 ---
 
 ### Phoebus Olog
@@ -369,7 +378,7 @@ The following messages represent a good way to verify the AA services are runnin
 
 ```
 cd /tmp/
-git clone https://github.com/ChannelFinder/ChannelFinderService.git  && cd epicsarchiverap && git checkout 3a3c94f -b deploy
+git clone https://github.com/ChannelFinder/ChannelFinderService.git  && cd ChannelFinderService && git checkout 3a3c94f -b deploy
 
 cd ChannelFinderService
 mvn clean install -DskipTests
@@ -392,10 +401,12 @@ systemctl start cf
 
 #### Check service status
 
+
 ```
 curl http://localhost:7171/ChannelFinder
 ```
 
+Follow the verification instructions on [Github](https://github.com/ChannelFinder/ChannelFinderService?tab=readme-ov-file#verification)
 
 #### Setting up recsync
 
