@@ -128,7 +128,7 @@ mvn clean install -DskipTests
 
 #### Setup Alarm Preferences
 
-- Copy `[phoebus_alarm_preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_preferences.ini)` to `/opt/epics-tools/services/nasa/phoebus-alarms`.
+- Copy [phoebus_alarm_preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_preferences.ini) to `/opt/epics-tools/services/nasa/phoebus-alarms`.
 
 #### Install Alarm Server
 
@@ -437,7 +437,7 @@ In /opt/RecSync/channelfinderapi.conf set the CF url, username, and password
 
 ```
 mkdir -p /opt/epics-tools/services/nasa/save_restore
-cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/save_restore/
+cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/save_restore/service-save-and-restore-4.7.4-SNAPSHOT.jar
 ```
 
 - Copy [save_restore.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/sar/save_restore.properties) to `/opt/epics-tools/services/nasa/save_restore/`.
@@ -460,7 +460,7 @@ systemctl start save_restore
 #### Check service status
 
 ```
-curl http://localhost:7171/save
+curl http://localhost:6060/save-restore
 ```
 
 ---
