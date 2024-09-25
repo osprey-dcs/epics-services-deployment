@@ -298,6 +298,10 @@ curl https://localhost:9191/Olog
    mkdir -p /opt/epics-tools/services/nasa/aa/deploy/conf
    ```
 
+6. ***Create/Verify the storage locations**
+
+   Ensure the STS, MTS, and LTS locations exist.
+
 ### Step 5: Run the Installation
 1. **Set Environment Variables**
    ```bash
@@ -335,6 +339,25 @@ curl https://localhost:9191/Olog
    - Update logos in:
      - `../mgmt/webapps/mgmt/ui/comm/img/labLogo.png`
      - `../mgmt/webapps/mgmt/ui/comm/img/labLogo2.png`
+
+#### Verify the service is running
+
+Check the `/opt/epics-tools/services/nasa/aa/deploy/mgmt/logs/arch.log`
+
+The following messages represent a good way to verify the AA services are running
+
+```
+[INFO ] 2024-09-24 16:43:51.705 [Startup executor] MgmtPostStartup - Finished post startup for the mgmt webapp
+[INFO ] 2024-09-24 16:44:03.783 [http-nio-17665-exec-4] BasicDispatcher - Servicing /webAppReady
+[INFO ] 2024-09-24 16:44:03.785 [http-nio-17665-exec-4] WebappReady - Received webAppReady from RETRIEVAL
+[INFO ] 2024-09-24 16:44:03.802 [http-nio-17665-exec-5] BasicDispatcher - Servicing /webAppReady
+[INFO ] 2024-09-24 16:44:03.803 [http-nio-17665-exec-5] WebappReady - Received webAppReady from ETL
+[INFO ] 2024-09-24 16:44:04.200 [http-nio-17665-exec-6] BasicDispatcher - Servicing /webAppReady
+[INFO ] 2024-09-24 16:44:04.201 [http-nio-17665-exec-6] WebappReady - Received webAppReady from ENGINE
+[INFO ] 2024-09-24 16:44:06.199 [Startup executor] MgmtPostStartup - About to run MgmtPostStartup
+[INFO ] 2024-09-24 16:44:06.200 [Startup executor] MgmtPostStartup - Startup is complete for MgmtPostStartup
+[INFO ] 2024-09-24 16:44:11.070 [http-nio-17665-exec-4] MgmtRuntimeState - All components in this appliance have started up. We should be ready to start accepting UI requests
+```
 
 ---
 
