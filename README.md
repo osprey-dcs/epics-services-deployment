@@ -115,7 +115,6 @@ systemctl start kafka
 ```
 cd /tmp/
 git clone https://github.com/ControlSystemStudio/phoebus.git && cd phoebus && git checkout d391b61 -b deploy
-cd phoebus/
 mvn clean install -DskipTests
 ```
 
@@ -140,7 +139,7 @@ cd /opt/epics-tools/services/nasa/phoebus-alarms
 tar -xvf service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz
 ```
 
-- Copy `[run-phoebus-alarm.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm.sh)` to `/opt/epics-tools/services/nasa/phoebus-alarms/`.
+- Copy [run-phoebus-alarm.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm.sh) to `/opt/epics-tools/services/nasa/phoebus-alarms/`.
 
 #### Setup Alarm Logger
 
@@ -149,16 +148,16 @@ mkdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger
 cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/
 ```
 
-- Copy the logger `[phoebus_alarm.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm.properties)` to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
+- Copy the logger [phoebus_alarm.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm.properties) to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
 
-- Copy `[run-phoebus-alarm-logger.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm-logger.sh)` to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
+- Copy [run-phoebus-alarm-logger.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm-logger.sh) to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
 
 
 #### initialize the alarm configuration
 
 Initialize the alarm topics using the create_alarm_topics scripts
 
-- Copy `[create_alarm_topics](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/create_alarm_topics.sh)` to `/opt/epics-tools/services/nasa/phoebus-alarms`.
+- Copy [create_alarm_topics](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/create_alarm_topics.sh) to `/opt/epics-tools/services/nasa/phoebus-alarms`.
 
 ```
 ./create_alarm_topics nasa_epics_alarm
@@ -168,9 +167,9 @@ Initialize the alarm topics using the create_alarm_topics scripts
 
 - Setup the services using the template phoebus_alarm.services
 
-- Copy `[phoebus_alarm.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm.service)` to `/etc/systemd/system`
+- Copy [phoebus_alarm.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm.service) to `/etc/systemd/system`
 
-- Copy `[phoebus_alarm_logger.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_logger.service)` to `/etc/systemd/system`
+- Copy [phoebus_alarm_logger.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_logger.service) to `/etc/systemd/system`
 
 ```
 systemctl enable phoebus_alarm
@@ -179,7 +178,6 @@ systemctl start phoebus_alarm
 systemctl enable phoebus_alarm_logger
 systemctl start phoebus_alarm_logger
 ```
-
 
 ---
 
