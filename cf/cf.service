@@ -30,7 +30,7 @@ RestartSec=5s
 
 Environment=JAVA_HOME=/usr/lib/jvm/jdk-17-openjdk-amd64
 Environment=PATH=/usr/lib/jvm/jdk-17-openjdk-amd64/bin:/usr/bin:/usr/local/bin
-Environment=SERVER=/opt/epics-tools/services/nasa/cf/ChannelFinderService
+Environment=SERVER=/opt/epics-tools/services/nasa/cf
 Environment=PORT=4007
 
 ExecStart=/usr/bin/procServ --foreground --noautorestart --name cf --chdir ${SERVER} --pidfile ${SERVER}/cf.pid --logfile ${SERVER}/console.log ${PORT} ./run-cf.sh
