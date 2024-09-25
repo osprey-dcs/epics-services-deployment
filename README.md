@@ -383,7 +383,7 @@ git clone https://github.com/ChannelFinder/ChannelFinderService.git  && cd Chann
 cd ChannelFinderService
 mvn clean install -DskipTests
 mkdir -p /opt/epics-tools/services/nasa/cf
-cp -rf /tmp/ChannelFinderService/target/ChannelFinder-4.7.3-SNAPSHOT.jar /opt/epics-tools/services/nasa/cf/
+cp -rf /tmp/ChannelFinderService/target/ChannelFinder-4.7.3-SNAPSHOT.jar /opt/epics-tools/services/nasa/cf/ChannelFinder-4.7.3.jar
 ```
 
 - Copy [cf.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/cf/cf.properties) to `/opt/epics-tools/services/nasa/cf/`.
