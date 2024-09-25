@@ -114,7 +114,7 @@ systemctl start kafka
 
 ```
 cd /tmp/
-git clone https://github.com/ControlSystemStudio/phoebus.git
+git clone https://github.com/ControlSystemStudio/phoebus.git && cd phoebus && git checkout d391b61 -b deploy
 cd phoebus/
 mvn clean install -DskipTests
 ```
@@ -168,7 +168,7 @@ cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAP
 
 ```
 cd /tmp/
-git clone https://github.com/Olog/phoebus-olog.git
+git clone https://github.com/Olog/phoebus-olog.git && cd phoebus-olog && git checkout f5022c4 -b deploy
 cd phoebus-olog/
 mvn clean install -Pdeployable-jar -DskipTests
 mkdir -p /opt/epics-tools/services/nasa/olog
@@ -311,7 +311,8 @@ systemctl start phoebus_olog
 
 ```
 cd /tmp/
-git clone https://github.com/ChannelFinder/ChannelFinderService.git
+git clone https://github.com/ChannelFinder/ChannelFinderService.git  && cd epicsarchiverap && git checkout 3a3c94f -b deploy
+
 cd ChannelFinderService
 mvn clean install -DskipTests
 mkdir -p /opt/epics-tools/services/nasa/cf
