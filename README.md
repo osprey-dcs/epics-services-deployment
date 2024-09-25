@@ -129,7 +129,7 @@ mvn clean install -DskipTests
 
 #### Setup Alarm Preferences
 
-- Copy `phoebus_alarm_preferences.ini` to `/opt/epics-tools/services/nasa/phoebus-alarms`.
+- Copy `[phoebus_alarm_preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_preferences.ini)` to `/opt/epics-tools/services/nasa/phoebus-alarms`.
 
 #### Install Alarm Server
 
@@ -140,14 +140,7 @@ cd /opt/epics-tools/services/nasa/phoebus-alarms
 tar -xvf service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz
 ```
 
-- Copy `run-phoebus-alarm.sh` to `/opt/epics-tools/services/nasa/phoebus-alarms/`.
-
-#### Enable and Start Alarm Services
-
-```
-systemctl enable phoebus_alarm
-systemctl start phoebus_alarm
-```
+- Copy `[run-phoebus-alarm.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm.sh)` to `/opt/epics-tools/services/nasa/phoebus-alarms/`.
 
 #### Setup Alarm Logger
 
@@ -156,7 +149,37 @@ mkdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger
 cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/
 ```
 
-- Copy the logger properties and `run-phoebus-alarm-logger.sh` to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
+- Copy the logger `[phoebus_alarm.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm.properties)` to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
+
+- Copy `[run-phoebus-alarm-logger.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm-logger.sh)` to `/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/`.
+
+
+#### initialize the alarm configuration
+
+Initialize the alarm topics using the create_alarm_topics scripts
+
+- Copy `[create_alarm_topics](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/create_alarm_topics.sh)` to `/opt/epics-tools/services/nasa/phoebus-alarms`.
+
+```
+./create_alarm_topics nasa_epics_alarm
+```
+
+#### Enable and Start Alarm Services
+
+- Setup the services using the template phoebus_alarm.services
+
+- Copy `[phoebus_alarm.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm.service)` to `/etc/systemd/system`
+
+- Copy `[phoebus_alarm_logger.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_logger.service)` to `/etc/systemd/system`
+
+```
+systemctl enable phoebus_alarm
+systemctl start phoebus_alarm
+
+systemctl enable phoebus_alarm_logger
+systemctl start phoebus_alarm_logger
+```
+
 
 ---
 
@@ -172,7 +195,7 @@ git clone https://github.com/Olog/phoebus-olog.git && cd phoebus-olog && git che
 cd phoebus-olog/
 mvn clean install -Pdeployable-jar -DskipTests
 mkdir -p /opt/epics-tools/services/nasa/olog
-cp -rf /tmp/phoebus-olog/target/service-olog-5.0.0-SNAPSHOT.jar /opt/epics-tools/services/nasa/olog/
+cp -rf /tmp/phoebus-olog/target/service-olog-5.0.0-SNAPSHOT.jar /opt/epics-tools/services/nasa/olog/service-olog-5.0.0.jar
 ```
 
 #### Enable and Start Olog Service
@@ -253,7 +276,7 @@ systemctl start phoebus_olog
    ```
 
 4. **Copy Installation Scripts**   
-   Copy the following templated install scripts to `install_scripts`   
+   Copy the following templated install scripts to `install_scripts`
    - Copy [single_machine_install.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/single_machine_install.sh)
    - Copy [addMysqlConnPool.py](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/addMysqlConnPool.py)
    - Copy [deployMultipleTomcats.py](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/deployMultipleTomcats.py)
