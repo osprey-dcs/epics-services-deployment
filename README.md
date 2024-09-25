@@ -310,6 +310,20 @@ curl https://localhost:9191/Olog
 6. ***Create/Verify the storage locations**
 
    Ensure the STS, MTS, and LTS locations exist.
+   
+   ```
+   sudo install -d -o epics_services_nasa -g epics_services_nasa /arch
+
+   sudo install -d -o epics_services_nasa -g epics_services_nasa /arch/sts/ArchiverStore
+   sudo install -d -o epics_services_nasa -g epics_services_nasa /arch/mts/ArchiverStore
+   sudo install -d -o epics_services_nasa -g epics_services_nasa /arch/lts/ArchiverStore
+   sudo mount -t tmpfs -o size=2048M tmpfs /arch/sts/ArchiverStore
+   ```
+   
+   Update the fstab file `/etc/fstab`
+   ```
+   none /opt/epics-tools/services/scorpius/aa/deploy/data/sts/ArchiverStore tmpfs nodev,nosuid,noexec,nodiratime,size=2048M 0 0
+   ```
 
 ### Step 5: Run the Installation
 1. **Set Environment Variables**

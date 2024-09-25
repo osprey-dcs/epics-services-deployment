@@ -37,9 +37,9 @@ export ARCHAPPL_MYIDENTITY="appliance0"
 
 # Set the location of short term and long term stores; this is necessary only if your policy demands it
 ###
-export ARCHAPPL_SHORT_TERM_FOLDER="/data/aa/sts"
-export ARCHAPPL_MEDIUM_TERM_FOLDER="/data/aa/mts"
-export ARCHAPPL_LONG_TERM_FOLDER="/data/aa/lts"
+export ARCHAPPL_SHORT_TERM_FOLDER="/arch/sts/ArchiverStore"
+export ARCHAPPL_MEDIUM_TERM_FOLDER="/arch/mts/ArchiverStore"
+export ARCHAPPL_LONG_TERM_FOLDER="/arch/lts/ArchiverStore"
 ###
 
 if [[ ! -d ${TOMCAT_HOME} ]]
