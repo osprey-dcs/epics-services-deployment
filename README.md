@@ -13,6 +13,7 @@ sudo apt install openjdk-17-jdk
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 sudo apt install git
 sudo apt install maven
+sudo apt install procserv
 ```
 
 #### Create Services Account
