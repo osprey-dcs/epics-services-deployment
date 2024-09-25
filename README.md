@@ -40,11 +40,11 @@ tar -xvf /tmp/elasticsearch-8.2.3-linux-x86_64.tar.gz
 
 #### Configuration
 
-- Copy `elasticsearch.yml` to `/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3/config`
+- Copy [elasticsearch.yml](https://github.com/osprey-dcs/epics-services-deployment/blob/main/elastic/elasticsearch.yml) to `/opt/epics-tools/services/nasa/elastic/elasticsearch-8.2.3/config`
 
 #### Set Up ElasticSearch as a Service
 
-- Copy `elastic.service` to `/etc/systemd/system/`
+- Copy [elastic.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/elastic/elastic.service) to `/etc/systemd/system/`
 
 ```
 systemctl enable elastic.service
