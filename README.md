@@ -373,6 +373,30 @@ systemctl start cf
 curl http://localhost:7171/ChannelFinder
 ```
 
+
+#### Setting up recsync
+
+```
+sudo apt install python3-twisted python3-requests python3-simplejson python3-urllib3
+
+cd /tmp
+git clone https://github.com/ChannelFinder/RecSync-env
+cd RecSync-env
+
+make init
+make install
+change channelfinder.service to cf.service in /etc/systemd/system/recsync.service
+systemctl daemon-reload
+systemctl start recsync.service
+systemctl status recsync.service
+```
+
+#### Recsync configuration
+
+In /opt/RecSync/recsync.conf set addrList
+
+In /opt/RecSync/channelfinderapi.conf set the CF url, username, and password
+
 ---
 
 ### Save/Restore
