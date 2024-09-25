@@ -307,7 +307,7 @@ curl https://localhost:9191/Olog
    mkdir -p /opt/epics-tools/services/nasa/aa/deploy/conf
    ```
 
-6. ***Create/Verify the storage locations**
+6. **Create/Verify the storage locations**
 
    Ensure the STS, MTS, and LTS locations exist.
    
