@@ -99,7 +99,7 @@ tar -xvf /tmp/kafka_2.13-3.6.2.tgz
 
 #### Set Up Kafka and Zookeeper Services
 
-- Copy `zookeeper.service` and `kafka.service` to `/etc/systemd/system/`.
+- Copy [zookeeper.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/kafka/zookeeper.service) and [kafka.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/kafka/kafka.service) to `/etc/systemd/system/`.
 
 ```
 systemctl enable zookeeper
@@ -196,11 +196,25 @@ mkdir -p /opt/epics-tools/services/nasa/olog
 cp -rf /tmp/phoebus-olog/target/service-olog-5.0.0-SNAPSHOT.jar /opt/epics-tools/services/nasa/olog/service-olog-5.0.0.jar
 ```
 
+**Setup Startup Scripts and properties**
+
+- Copy [olog.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-olog/olog.properties) to ` /opt/epics-tools/services/nasa/olog/`.
+
+- Copy [run-phoebus-olog.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-olog/run-phoebus-olog.sh) to ` /opt/epics-tools/services/nasa/olog/`.
+
 #### Enable and Start Olog Service
+
+- Copy [phoebus_olog.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-olog/phoebus_olog.service) to `/etc/systemd/system`
 
 ```
 systemctl enable phoebus_olog
 systemctl start phoebus_olog
+```
+
+#### Check service status
+
+```
+curl https://localhost:9191/Olog
 ```
 
 ---
@@ -304,10 +318,10 @@ systemctl start phoebus_olog
 
 ### Step 6: Configure Startup and Services
 1. **Setup Startup Scripts**
-   - Copy `sampleStatup.sh` to `/opt/epics-tools/services/nasa/aa/deploy/nasaStartup.sh`.
+   - Copy [sampleStatup.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/sampleStartup.sh) to `/opt/epics-tools/services/nasa/aa/deploy/nasaStartup.sh`.
 
 2. **Setup Service Files**
-   - Copy `aa.service` to `/etc/systemd/system`.
+   - Copy [aa.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/aa.service) to `/etc/systemd/system`.
 
 3. **Modify HTML Management Pages**
    ```bash
@@ -340,11 +354,23 @@ mkdir -p /opt/epics-tools/services/nasa/cf
 cp -rf /tmp/ChannelFinderService/target/ChannelFinder-4.7.3-SNAPSHOT.jar /opt/epics-tools/services/nasa/cf/
 ```
 
+- Copy [cf.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/cf/cf.properties) to `/opt/epics-tools/services/nasa/cf/`.
+
+- Copy [run-cf.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/cf/run-cf.sh) to `/opt/epics-tools/services/nasa/cf/`.
+
 #### Enable and Start ChannelFinder Service
+
+- Copy [cf.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/cf/cf.service) to `/etc/systemd/system`.
 
 ```
 systemctl enable cf
 systemctl start cf
+```
+
+#### Check service status
+
+```
+curl http://localhost:7171/ChannelFinder
 ```
 
 ---
@@ -356,13 +382,27 @@ mkdir -p /opt/epics-tools/services/nasa/save_restore
 cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/save_restore/
 ```
 
-- Setup services using `save_restore.service` as a template.
+- Copy [save_restore.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/sar/save_restore.properties) to `/opt/epics-tools/services/nasa/save_restore/`.
+
+- Copy [run-save-restore.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/save_restore/run-save_restore.sh) to `/opt/epics-tools/services/nasa/save_restore/`.
+
 
 #### Enable and Start Save/Restore Service
+
+- Setup services using `save_restore.service` as a template.
+
+- Copy [save_restore.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/sar/save_restore.service) to `/etc/systemd/system`.
+
 
 ```
 systemctl enable save_restore
 systemctl start save_restore
 ``` 
+
+#### Check service status
+
+```
+curl http://localhost:7171/save
+```
 
 ---
