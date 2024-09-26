@@ -225,7 +225,7 @@ systemctl start phoebus_olog
 #### Check service status
 
 ```
-curl https://localhost:9191/Olog
+curl http://localhost:9090/Olog
 ```
 
 ---
