@@ -447,7 +447,7 @@ Follow the verification instructions on [Github](https://github.com/ChannelFinde
 sudo apt install python3-twisted python3-requests python3-simplejson python3-urllib3
 
 cd /tmp
-git clone https://github.com/ChannelFinder/RecSync-env
+git clone https://github.com/ChannelFinder/RecSync-env && cd RecSync-env && git checkout b01bd93 -b deploy
 cd RecSync-env
 
 make init
