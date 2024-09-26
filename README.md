@@ -242,6 +242,8 @@ systemctl start phoebus_olog
 curl http://localhost:9090/Olog
 ```
 
+Follow the verification instructions on [Github](https://github.com/Olog/phoebus-olog?tab=readme-ov-file#check-if-service-is-running)
+
 ---
 
 ### Archiver Appliance
