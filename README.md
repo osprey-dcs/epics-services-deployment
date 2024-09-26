@@ -127,9 +127,6 @@ mvn clean install -DskipTests
 - **Alarm Logger**: [Alarm Logger](https://github.com/ControlSystemStudio/phoebus/tree/master/services/alarm-logger)
 - **Alarm Config Logger**: [Alarm Config Logger](https://github.com/ControlSystemStudio/phoebus/tree/master/services/alarm-config-logger)
 
-#### Setup Alarm Preferences
-
-- Copy [phoebus_alarm_preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_preferences.ini) to `/opt/epics-tools/services/nasa/phoebus-alarms`.
 
 #### Install Alarm Server
 
@@ -141,6 +138,10 @@ tar -xvf service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz
 ```
 
 - Copy [run-phoebus-alarm.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm.sh) to `/opt/epics-tools/services/nasa/phoebus-alarms/`.
+
+#### Setup Alarm Preferences
+
+- Copy [phoebus_alarm_preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/phoebus_alarm_preferences.ini) to `/opt/epics-tools/services/nasa/phoebus-alarms`.
 
 #### Setup Alarm Logger
 
