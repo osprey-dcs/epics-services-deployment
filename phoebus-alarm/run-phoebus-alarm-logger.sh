@@ -14,4 +14,4 @@ JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS -Dlogback.configurationFile=/opt/css/nsls2-p
 export JDK_JAVA_OPTIONS
 
 echo $JDK_JAVA_OPTIONS
-java -Dspring.config.location=/opt/epics-tools/services/nasa/phoebus-alarm/phoebus_alarm.properties -jar ${PHOEBUS_ALARM_LOGGER_JAR} "$@"
+java -Dspring.config.location=/opt/epics-tools/services/nasa/phoebus-alarm/alarm_logger/phoebus_alarm.properties -jar ${PHOEBUS_ALARM_LOGGER_JAR} "$@"
