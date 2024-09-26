@@ -119,6 +119,20 @@ git clone https://github.com/ControlSystemStudio/phoebus.git && cd phoebus && gi
 mvn clean install -DskipTests
 ```
 
+Install Phoebus in your home directory
+
+```
+cp -rf /tmp/phoebus/phoebus-product/ ~
+```
+
+- Copy [phoebus-preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-preferences.ini) to `~/phoebus-product/`.
+
+**Note** the preferences are system specific and you will have to review and update n/w configurations, creadentails, alarm topics to match your deployment
+
+```
+./phoebus.sh -p phoebus-preferences.ini
+```
+
 ---
 
 ### Alarm Services
