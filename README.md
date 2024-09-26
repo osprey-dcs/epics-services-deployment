@@ -452,7 +452,11 @@ cd RecSync-env
 
 make init
 make install
-change channelfinder.service to cf.service in /etc/systemd/system/recsync.service
+
+# in /etc/systemd/system/recsync.service
+# change channelfinder.service to cf.service
+# change /usr/bin/twistd to /usr/bin/twistd3
+
 systemctl daemon-reload
 systemctl start recsync.service
 systemctl status recsync.service
