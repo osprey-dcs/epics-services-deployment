@@ -16,8 +16,8 @@
 Description=phoebus olog service
 Documentation=https://olog.readthedocs.io/en/latest/
 Wants=network-online.target
-After=nasa_elastic.service nasa_mongod.service
-Requires=nasa_elastic.service nasa_mongod.service
+After=elastic.service mongod.service
+Requires=elastic.service mongod.service
 
 StartLimitIntervalSec=500
 StartLimitBurst=5
