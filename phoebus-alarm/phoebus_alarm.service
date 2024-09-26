@@ -16,8 +16,8 @@
 Description=alarm service
 Documentation=https://github.com/shroffk/phoebus/tree/master/services/alarm-server
 Wants=network-online.target
-After=nasa_kafka.service
-Requires=nasa_kafka.service
+After=kafka.service
+Requires=kafka.service
 
 StartLimitIntervalSec=500
 StartLimitBurst=5
