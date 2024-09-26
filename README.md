@@ -341,7 +341,7 @@ curl http://localhost:9090/Olog
    
    Update the fstab file `/etc/fstab`
    ```
-   none /opt/epics-tools/services/scorpius/aa/deploy/data/sts/ArchiverStore tmpfs nodev,nosuid,noexec,nodiratime,size=2048M 0 0
+   none /arch/sts/ArchiverStore tmpfs nodev,nosuid,noexec,nodiratime,size=2048M 0 0
    ```
 
 ### Step 5: Run the Installation
