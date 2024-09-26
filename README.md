@@ -249,7 +249,7 @@ curl http://localhost:9090/Olog
 #### Install Archiver Appliance
 
 ### Prerequisites
-- **MySQL 5.7** (with legacy encryption)
+- **MySQL or MariaDB** (with legacy encryption)
 - **Gradle** (for building the application)
 
 ### Step 1: Build and Deploy the Archiver Appliance
@@ -280,7 +280,7 @@ curl http://localhost:9090/Olog
    wget https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.2.0.tar.gz
    ```
 
-### Step 3: Setup MySQL
+### Step 3: Setup RDB backend
 1. **Create the Archiver Database**
    
    See details for [RDB Setup](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04)
