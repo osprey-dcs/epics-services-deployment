@@ -286,7 +286,10 @@ curl http://localhost:9090/Olog
    See details for [RDB Setup](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-22-04)
    
    ```
-   mysql --user=root --password=*****
+   sudo mariadb
+   ```
+   In the database shell
+   ```
    CREATE DATABASE archappl;
    CREATE USER archappl IDENTIFIED BY '******';
    GRANT ALL ON archappl.* TO 'archappl'@'%' WITH GRANT OPTION;
