@@ -365,7 +365,7 @@ Follow the verification instructions on [Github](https://github.com/Olog/phoebus
    ```
 
 ### Step 6: Configure Startup and Services
-1. **Setup Startup Scripts**
+1. **Setup Startup Scripts [IMPORTANT]**
    - Copy [sampleStatup.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/aa/sampleStartup.sh) to `/opt/epics-tools/services/nasa/aa/deploy/nasaStartup.sh`.
 
 2. **Setup Service Files**
