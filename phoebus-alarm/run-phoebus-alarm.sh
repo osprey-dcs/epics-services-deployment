@@ -10,7 +10,7 @@ fi
 
 JDK_JAVA_OPTIONS=" -DCA_DISABLE_REPEATER=true"
 JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS -Dnashorn.args=--no-deprecation-warning"
-JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS -Dlogback.configurationFile=/opt/css/nsls2-phoebus/config/logback.xml"
+#JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS -Dlogback.configurationFile=/opt/css/nsls2-phoebus/config/logback.xml"
 export JDK_JAVA_OPTIONS
 
 echo $JDK_JAVA_OPTIONS
