@@ -473,14 +473,14 @@ In `/opt/RecSync/channelfinderapi.conf` set the CF url, username, and password
 #### Check recsync service status
 
 ```
-2024-10-02T16:08:38-0400 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 22.1.0 (/usr/bin/python3 3.10.12) starting up.
-2024-10-02T16:08:38-0400 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.pollreactor.PollReactor.
-2024-10-02T16:08:38-0400 [stdout#info] Starting
-2024-10-02T16:08:38-0400 [-] CastFactory starting on 45722
-2024-10-02T16:08:38-0400 [recceiver.recast.CastFactory#info] Starting factory <recceiver.recast.CastFactory object at 0x7f5a3e96d7e0>
-2024-10-02T16:08:38-0400 [stdout#info] listening on IPv4Address(type='TCP', host='0.0.0.0', port=45722)
-2024-10-02T16:08:38-0400 [-] Announcer starting on 45722
-2024-10-02T16:08:38-0400 [-] Starting protocol <recceiver.announce.Announcer object at 0x7f5a3e96e110>
+[twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 22.1.0 (/usr/bin/python3 3.10.12) starting up.
+[twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.pollreactor.PollReactor.
+[stdout#info] Starting
+[-] CastFactory starting on 45722
+[recceiver.recast.CastFactory#info] Starting factory <recceiver.recast.CastFactory object at 0x7f5a3e96d7e0>
+[stdout#info] listening on IPv4Address(type='TCP', host='0.0.0.0', port=45722)
+[-] Announcer starting on 45722
+[-] Starting protocol <recceiver.announce.Announcer object at 0x7f5a3e96e110>
 ```
 ---
 
