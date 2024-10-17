@@ -144,6 +144,8 @@ cp -rf /tmp/phoebus/phoebus-product/ ~
 
 #### Install Alarm Server
 
+Ensure you have completed the previous step of `Phoebus Installation`
+
 ```
 mkdir -p /opt/epics-tools/services/nasa/phoebus-alarms
 cp -rf /tmp/phoebus/services/alarm-server/target/service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz /opt/epics-tools/services/nasa/phoebus-alarms/
