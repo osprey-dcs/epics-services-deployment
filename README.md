@@ -218,10 +218,19 @@ systemctl start phoebus_alarm_config_logger
 
 Start the Phoebus GUI:
 run-phoebus
-In the GUI menus, navigate to: 
-    Applications -> Alarm -> Alarm Tree
-and then repeat to 
-    Applications -> Alarm -> Alarm Log Table
+In the GUI menus, navigate to:   
+    Applications -> Alarm -> Alarm Tree  
+and then repeat to   
+    Applications -> Alarm -> Alarm Log Table   
+
+Verification of the alarm configuration logger
+
+The alarm configuration logger creates a git repo with the alarm configuration tree under the folder configured in the `phoebus_alarm_config_logger.service`
+
+e.g.
+```
+ls -al /opt/epics-tools/services/nasa/phoebus-alarms/nasa_epics_alarm
+```
 
 ---
 
