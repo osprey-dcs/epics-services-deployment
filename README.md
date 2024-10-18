@@ -305,9 +305,16 @@ cors.allowed.origins=http://localhost:3000
 
 Installing Olog on tomcat or other servers
 
+OR - option2
+
 You can follow the instruction available at:
 
 https://create-react-app.dev/docs/deployment/
+
+```
+npm install -g serve
+serve -s build
+```
 
 ---
 
