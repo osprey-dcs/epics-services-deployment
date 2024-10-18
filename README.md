@@ -295,7 +295,19 @@ systemctl enable phoebus_olog_webclient
 systemctl start phoebus_olog_webclient
 ```
 
-NOTE: You will also have to update the olog.properties to inlcude an
+NOTE: You will also have to update the olog.properties to include the following cors exception
+
+############################## CORS settings ##############################
+# Comma separated list of origins allowed to do CORS requests.
+# Defaults to http://localhost:3000 (NodeJS development), but must be augmented
+# with the origin(s) on which the web front-end is deployed.
+cors.allowed.origins=http://localhost:3000
+
+Installing Olog on tomcat or other servers
+
+You can follow the instruction available at:
+
+https://create-react-app.dev/docs/deployment/
 
 ---
 
