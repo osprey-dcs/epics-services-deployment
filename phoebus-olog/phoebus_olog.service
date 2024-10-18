@@ -1,15 +1,15 @@
-# File /etc/systemd/system/nasa_phoebus_olog.service
+# File /etc/systemd/system/phoebus_olog.service
 #
 # After changes
 #   sudo systemctl daemon-reload
 #
 # Start/status/stop
-#   sudo systemctl start nasa_phoebus_olog.service
-#   sudo systemctl status nasa_phoebus_olog.service
-#   sudo systemctl stop nasa_phoebus_olog.service
+#   sudo systemctl start phoebus_olog.service
+#   sudo systemctl status phoebus_olog.service
+#   sudo systemctl stop phoebus_olog.service
 #
 # Start when computer boots:
-#   sudo systemctl enable nasa_phoebus_olog.service
+#   sudo systemctl enable phoebus_olog.service
 #
 
 [Unit]

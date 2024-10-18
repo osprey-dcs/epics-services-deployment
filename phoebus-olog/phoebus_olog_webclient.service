@@ -1,23 +1,23 @@
-# File /etc/systemd/system/nasa_phoebus_olog_webclient.service
+# File /etc/systemd/system/phoebus_olog_webclient.service
 #
 # After changes
 #   sudo systemctl daemon-reload
 #
 # Start/status/stop
-#   sudo systemctl start nasa_phoebus_olog_webclient.service
-#   sudo systemctl status nasa_phoebus_olog_webclient.service
-#   sudo systemctl stop nasa_phoebus_olog_webclient.service
+#   sudo systemctl start phoebus_olog_webclient.service
+#   sudo systemctl status phoebus_olog_webclient.service
+#   sudo systemctl stop phoebus_olog_webclient.service
 #
 # Start when computer boots:
-#   sudo systemctl enable nasa_phoebus_olog_webclient.service
+#   sudo systemctl enable phoebus_olog_webclient.service
 #
 
 [Unit]
 Description=phoebus olog webclient service
 Documentation=https://olog.readthedocs.io/en/latest/
 Wants=network-online.target
-After=nasa_phoebus_olog.service
-Requires=nasa_phoebus_olog.service
+After=phoebus_olog.service
+Requires=phoebus_olog.service
 
 StartLimitIntervalSec=500
 StartLimitBurst=5
