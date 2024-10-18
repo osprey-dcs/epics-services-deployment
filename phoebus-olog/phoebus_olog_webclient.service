@@ -1,0 +1,39 @@
+# File /etc/systemd/system/nasa_phoebus_olog_webclient.service
+#
+# After changes
+#   sudo systemctl daemon-reload
+#
+# Start/status/stop
+#   sudo systemctl start nasa_phoebus_olog_webclient.service
+#   sudo systemctl status nasa_phoebus_olog_webclient.service
+#   sudo systemctl stop nasa_phoebus_olog_webclient.service
+#
+# Start when computer boots:
+#   sudo systemctl enable nasa_phoebus_olog_webclient.service
+#
+
+[Unit]
+Description=phoebus olog webclient service
+Documentation=https://olog.readthedocs.io/en/latest/
+Wants=network-online.target
+After=nasa_phoebus_olog.service
+Requires=nasa_phoebus_olog.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=epics_services_nasa
+Group=epics_services_nasa
+
+Restart=on-failure
+RestartSec=5s
+
+WorkingDirectory=/opt/epics-tools/services/nasa/olog/phoebus-olog-web-client/build
+ExecStart=/usr/bin/npm start
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

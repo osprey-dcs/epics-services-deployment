@@ -274,6 +274,29 @@ curl http://localhost:9090/Olog
 
 Follow the verification instructions on [Github](https://github.com/Olog/phoebus-olog?tab=readme-ov-file#check-if-service-is-running)
 
+#### Olog Webclient
+
+```
+cd /opt/epics-tools/services/nasa/olog
+git clone https://github.com/Olog/phoebus-olog-web-client.git && cd phoebus-olog-web-client && git checkout 1f56502 -b deploy
+cp .env.example .env
+
+# Set REACT_APP_BASE_URL=http://localhost:9090/Olog
+# The exact URL should match your Olog service deployment
+
+npm ci
+npm run build
+```
+
+- Copy [phoebus_olog_webclient.service](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-olog/phoebus_olog_webclient.service) to `/etc/systemd/system`
+
+```
+systemctl enable phoebus_olog_webclient
+systemctl start phoebus_olog_webclient
+```
+
+NOTE: You will also have to update the olog.properties to inlcude an
+
 ---
 
 ### Archiver Appliance
