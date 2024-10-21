@@ -318,6 +318,13 @@ npm install -g serve
 serve -s build
 ```
 
+Update the following 2 lines in the `/etc/systemd/system/phoebus_olog_webclient`
+
+```
+WorkingDirectory=/opt/epics-tools/services/nasa/olog/phoebus-olog-web-client
+ExecStart=serve -s build
+```
+
 ---
 
 ### Archiver Appliance
