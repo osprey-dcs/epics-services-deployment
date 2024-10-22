@@ -96,7 +96,14 @@ tar -xvf /tmp/kafka_2.13-3.6.2.tgz
 
 #### Optional Configuration
 
-- Configure Zookeeper and Kafka ports, and set up the data folder in `kafka/config/`.
+- **Zookeeper and Kafka Port Configuration**:  
+  You may configure Zookeeper and Kafka ports by editing the respective configuration files located in the `kafka/config/` directory. Additionally, ensure that the data folder is properly set up for Kafka to store its data.
+
+- **Kafka Listener Configuration**:  
+  By default, Kafka uses the `getCanonicalName` of the machine and port `9092` as its listener. This should work in most scenarios. However, if you experience connection issues, you can manually set the listener by adding the following line to your `server.properties` file:
+
+  ```properties
+  listeners=PLAINTEXT://<hostname>:9092
 
 #### Set Up Kafka and Zookeeper Services
 
