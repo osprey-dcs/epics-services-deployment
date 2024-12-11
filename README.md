@@ -254,7 +254,7 @@ cd /tmp/
 git clone https://github.com/Olog/phoebus-olog.git -b v5.0.2 && cd phoebus-olog && git checkout -b deploy
 mvn clean install -Pdeployable-jar -DskipTests
 mkdir -p /opt/epics-tools/services/nasa/olog
-cp -rf /tmp/phoebus-olog/target/service-olog-5.0.0-SNAPSHOT.jar /opt/epics-tools/services/nasa/olog/service-olog-5.0.0.jar
+cp -rf /tmp/phoebus-olog/target/service-olog-5.0.2.jar /opt/epics-tools/services/nasa/olog/service-olog-5.0.2.jar
 ```
 
 **Setup Startup Scripts and properties**

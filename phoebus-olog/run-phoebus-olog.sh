@@ -5,7 +5,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 # figure out the path to the product jar
 if [[ -z "${OLOG_JAR}" ]]; then
-  OLOG_JAR=/opt/epics-tools/services/nasa/olog/service-olog-5.0.0.jar
+  OLOG_JAR=/opt/epics-tools/services/nasa/olog/service-olog-5.0.2.jar
 fi
 
 JDK_JAVA_OPTIONS=" -DCA_DISABLE_REPEATER=true"
