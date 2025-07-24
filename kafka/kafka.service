@@ -32,8 +32,8 @@ RestartSec=5s
 Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 Environment=PATH=/usr/lib/jvm/java-17-openjdk-amd64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-ExecStart=/opt/epics-tools/services/nasa/kafka/kafka_2.13-3.6.2/bin/kafka-server-start.sh /opt/epics-tools/services/nasa/kafka/kafka_2.13-3.6.2/config/server.properties
-ExecStop=/opt/epics-tools/services/nasa/kafka/kafka_2.13-3.6.2/bin/kafka-server-stop.sh
+ExecStart=/opt/epics-tools/services/nasa/kafka/kafka_2.13-3.9.0/bin/kafka-server-start.sh /opt/epics-tools/services/nasa/kafka/kafka_2.13-3.9.0/config/server.properties
+ExecStop=/opt/epics-tools/services/nasa/kafka/kafka_2.13-3.9.0/bin/kafka-server-stop.sh
 
 [Install]
 WantedBy=multi-user.target
