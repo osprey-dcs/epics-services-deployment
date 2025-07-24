@@ -80,7 +80,7 @@ sudo systemctl enable mongod
 
 ---
 
-### Kafka 3.6.2
+### Kafka 3.9.0
 
 - **Installation Guide**: [Kafka Documentation](https://kafka.apache.org/22/documentation.html)
 
@@ -88,10 +88,10 @@ sudo systemctl enable mongod
 
 ```
 cd /tmp
-wget https://downloads.apache.org/kafka/3.6.2/kafka_2.13-3.6.2.tgz
+wget https://downloads.apache.org/kafka/3.9.0/kafka_2.13-3.9.0.tgz
 mkdir -p /opt/epics-tools/services/nasa/kafka
 cd /opt/epics-tools/services/nasa/kafka
-tar -xvf /tmp/kafka_2.13-3.6.2.tgz
+tar -xvf /tmp/kafka_2.13-3.9.0.tgz
 ```
 
 #### Optional Configuration
