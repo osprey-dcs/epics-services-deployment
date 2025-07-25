@@ -14,4 +14,4 @@ JDK_JAVA_OPTIONS="$JDK_JAVA_OPTIONS -Dnashorn.args=--no-deprecation-warning"
 export JDK_JAVA_OPTIONS
 
 echo $JDK_JAVA_OPTIONS
-java -Dspring.config.location=/opt/epics-tools/services/nasa/phoebus-alarm/alarm_logger/phoebus_alarm.properties -jar ${PHOEBUS_ALARM_LOGGER_JAR} "$@"
+java -Dspring.config.location=/opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/phoebus_alarm.properties -jar ${PHOEBUS_ALARM_LOGGER_JAR} "$@"
