@@ -284,7 +284,7 @@ Follow the verification instructions on [Github](https://github.com/Olog/phoebus
 
 ```
 cd /opt/epics-tools/services/nasa/olog
-git clone https://github.com/Olog/phoebus-olog-web-client.git && cd phoebus-olog-web-client && git checkout 1f56502 -b deploy
+git clone https://github.com/Olog/phoebus-olog-web-client.git && cd phoebus-olog-web-client && git checkout v2.1.0 -b deploy
 cp .env.example .env
 
 # Set REACT_APP_BASE_URL=http://localhost:9090/Olog
