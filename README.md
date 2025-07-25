@@ -580,7 +580,7 @@ cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4.
 
 - Copy [save_restore.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/sar/save_restore.properties) to `/opt/epics-tools/services/nasa/save_restore/`.
 
-- Copy [run-save-restore.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/save_restore/run-save_restore.sh) to `/opt/epics-tools/services/nasa/save_restore/`.
+- Copy [run-save-restore.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/sar/run-save_restore.sh) to `/opt/epics-tools/services/nasa/save_restore/`.
 
 
 #### Enable and Start Save/Restore Service
