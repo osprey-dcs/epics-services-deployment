@@ -122,7 +122,7 @@ systemctl start kafka
 
 ```
 cd /tmp/
-git clone https://github.com/ControlSystemStudio/phoebus.git && cd phoebus && git checkout d391b61 -b deploy
+git clone https://github.com/ControlSystemStudio/phoebus.git && cd phoebus && git checkout v4.7.4 -b deploy
 mvn clean install -DskipTests
 ```
 
@@ -155,9 +155,9 @@ Ensure you have completed the previous step of `Phoebus Installation`
 
 ```
 mkdir -p /opt/epics-tools/services/nasa/phoebus-alarms
-cp -rf /tmp/phoebus/services/alarm-server/target/service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz /opt/epics-tools/services/nasa/phoebus-alarms/
+cp -rf /tmp/phoebus/services/alarm-server/target/service-alarm-server-4.7.4-bin.tar.gz /opt/epics-tools/services/nasa/phoebus-alarms/
 cd /opt/epics-tools/services/nasa/phoebus-alarms
-tar -xvf service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz
+tar -xvf service-alarm-server-4.7.4-bin.tar.gz
 ```
 
 - Copy [run-phoebus-alarm.sh](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-alarm/run-phoebus-alarm.sh) to `/opt/epics-tools/services/nasa/phoebus-alarms/`.
@@ -170,7 +170,7 @@ tar -xvf service-alarm-server-4.7.4-SNAPSHOT-bin.tar.gz
 
 ```
 mkdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger
-cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/
+cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_logger/
 ```
 
 #### Setup Alarm Logger Preferences
@@ -183,7 +183,7 @@ cp -rf /tmp/phoebus/services/alarm-logger/target/service-alarm-logger-4.7.4-SNAP
 
 ```
 mkdir /opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger
-cp -rf /tmp/phoebus/services/alarm-config-logger/target/service-alarm-config-logger-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger/
+cp -rf /tmp/phoebus/services/alarm-config-logger/target/service-alarm-config-logger-4.7.4.jar /opt/epics-tools/services/nasa/phoebus-alarms/alarm_config_logger/
 ```
 
 #### Setup Alarm Config Logger Preferences
@@ -500,12 +500,12 @@ The following messages represent a good way to verify the AA services are runnin
 
 ```
 cd /tmp/
-git clone https://github.com/ChannelFinder/ChannelFinderService.git  && cd ChannelFinderService && git checkout 3a3c94f -b deploy
+git clone https://github.com/ChannelFinder/ChannelFinderService.git  && cd ChannelFinderService && git checkout ChannelFinder-4.7.3
 
 cd ChannelFinderService
 mvn clean install -DskipTests
 mkdir -p /opt/epics-tools/services/nasa/cf
-cp -rf /tmp/ChannelFinderService/target/ChannelFinder-4.7.3-SNAPSHOT.jar /opt/epics-tools/services/nasa/cf/ChannelFinder-4.7.3.jar
+cp -rf /tmp/ChannelFinderService/target/ChannelFinder-4.7.3.jar /opt/epics-tools/services/nasa/cf/ChannelFinder-4.7.3.jar
 ```
 
 - Copy [cf.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/cf/cf.properties) to `/opt/epics-tools/services/nasa/cf/`.
@@ -525,7 +525,7 @@ systemctl start cf
 
 
 ```
-curl http://localhost:7171/ChannelFinder
+curl http://localhost:7070/ChannelFinder
 ```
 
 Follow the verification instructions on [Github](https://github.com/ChannelFinder/ChannelFinderService?tab=readme-ov-file#verification)
@@ -575,7 +575,7 @@ In `/opt/RecSync/channelfinderapi.conf` set the CF url, username, and password
 
 ```
 mkdir -p /opt/epics-tools/services/nasa/save_restore
-cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4-SNAPSHOT.jar /opt/epics-tools/services/nasa/save_restore/service-save-and-restore-4.7.4-SNAPSHOT.jar
+cp /tmp/phoebus/services/save-and-restore/target/service-save-and-restore-4.7.4.jar /opt/epics-tools/services/nasa/save_restore/service-save-and-restore-4.7.4.jar
 ```
 
 - Copy [save_restore.properties](https://github.com/osprey-dcs/epics-services-deployment/blob/main/sar/save_restore.properties) to `/opt/epics-tools/services/nasa/save_restore/`.
