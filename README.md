@@ -129,10 +129,10 @@ mvn clean install -DskipTests
 Install Phoebus in your home directory
 
 ```
-cp -rf /tmp/phoebus/phoebus-product/ /usr/local/phoebus
+cp -rf /tmp/phoebus/phoebus-product/ /usr/local/
 ```
 
-- Copy [phoebus-preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-preferences.ini) to `~/phoebus-product/`.
+- Copy [phoebus-preferences.ini](https://github.com/osprey-dcs/epics-services-deployment/blob/main/phoebus-preferences.ini) to `/usr/local/phoebus-product/`.
 
 **Note** the preferences are system specific and you will have to review and update n/w configurations, creadentails, alarm topics to match your deployment
 
