@@ -95,7 +95,7 @@ tar -xvf /tmp/kafka_2.13-3.9.0.tgz
 ```
 **Note:** It is recommended to keep a backup of the Kafka binaries (kafka_2.13-3.9.0.tgz) in a secure location. Older versions may be removed from the official site and become unavailable for future downloads.
 
-#### Optional Configuration
+#### Configuration
 
 - **Zookeeper and Kafka Port Configuration**:  
   You may configure Zookeeper and Kafka ports by editing the respective configuration files located in the `kafka/config/` directory. 
