@@ -93,11 +93,27 @@ mkdir -p /opt/epics-tools/services/nasa/kafka
 cd /opt/epics-tools/services/nasa/kafka
 tar -xvf /tmp/kafka_2.13-3.9.0.tgz
 ```
+**Note:** It is recommended to keep a backup of the Kafka binaries (kafka_2.13-3.9.0.tgz) in a secure location. Older versions may be removed from the official site and become unavailable for future downloads.
 
 #### Optional Configuration
 
 - **Zookeeper and Kafka Port Configuration**:  
-  You may configure Zookeeper and Kafka ports by editing the respective configuration files located in the `kafka/config/` directory. Additionally, ensure that the data folder is properly set up for Kafka to store its data.
+  You may configure Zookeeper and Kafka ports by editing the respective configuration files located in the `kafka/config/` directory. 
+
+- **Data and Log Storage Configuration**:
+  It is strongly recommended to configure explicit paths to prevent accidental data loss on system reboots or cleanups.
+  In config/server.properties, set the Kafka log directory:
+
+  ```properties
+  # A comma separated list of directories under which to store log files
+  log.dirs=/opt/epics-tools/services/nasa/kafka/kafka-logs
+  ```
+
+  In config/zookeeper.properties, set the Zookeeper data directory:
+  ```properties
+  # the directory where the snapshot is stored.
+  dataDir=/opt/epics-tools/services/nasa/kafka/data/zookeeper
+  ```
 
 - **Kafka Listener Configuration**:  
   By default, Kafka uses the `getCanonicalName` of the machine and port `9092` as its listener. This should work in most scenarios. However, if you experience connection issues, you can manually set the listener by adding the following line to your `server.properties` file:
