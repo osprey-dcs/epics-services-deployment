@@ -614,7 +614,7 @@ systemctl start save_restore
 #### Check service status
 
 ```
-curl http://localhost:6060/save-restore
+ curl --fail-with-body http://localhost:6060/save-restore/
 ```
 
 Follow the verification instructions on [Github](https://github.com/ControlSystemStudio/phoebus/tree/master/services/save-and-restore#verification)
